@@ -97,6 +97,10 @@ export default function HomePage() {
                   <div className="h-2.5 w-2.5 rounded-full bg-[#8cff41]" />
                 </div>
 
+                <div className="mt-5 flex h-24 items-center justify-center rounded-[1.1rem] border border-white/8 bg-white/[0.04] p-3">
+                  <img src={app.logoSrc} alt={app.logoAlt} className="h-full w-full object-contain" />
+                </div>
+
                 <div className="display-face mt-5 text-[1.55rem] uppercase leading-[0.94] text-white">{app.name}</div>
                 <div className="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">{app.type}</div>
                 <p className="mt-4 flex-1 text-sm leading-7 text-zinc-300">{app.summary}</p>

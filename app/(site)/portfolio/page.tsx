@@ -1,7 +1,7 @@
 import { ExternalLink } from "lucide-react";
 
 import ProjectCard, { ProjectBrand } from "../../components/project-card";
-import { projects } from "../../components/site-data";
+import { logoDesigns, projects } from "../../components/site-data";
 
 export default function PortfolioPage() {
   const frontPageProjects = projects.filter((project) => project.homeFeatured);
@@ -68,6 +68,38 @@ export default function PortfolioPage() {
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
+        </div>
+      </section>
+
+      <section className="border-t border-white/10 bg-[linear-gradient(180deg,rgba(15,18,18,0.82),rgba(7,8,8,0.98))]">
+        <div className="mx-auto max-w-7xl px-4 py-14 md:px-6 md:py-18">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="display-face text-sm uppercase tracking-[0.34em] text-[#8cff41]">Logo design archive</div>
+              <h2 className="display-face outlined-heading--soft mt-5 text-[clamp(2.2rem,4.8vw,4.5rem)] uppercase leading-[0.9] tracking-[-0.06em]">
+                Brand marks.
+                <br />
+                Product marks.
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-zinc-300">
+              The active artwork set from the project assets folder, shown directly so the visual work is not hidden behind text cards.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {logoDesigns.map((logo) => (
+              <div
+                key={logo.src}
+                className="flex min-h-[13rem] flex-col rounded-[1.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(24,28,27,0.94),rgba(9,11,11,0.98))] p-4"
+              >
+                <div className="flex h-32 items-center justify-center rounded-[1rem] border border-white/8 bg-white/[0.04] p-4">
+                  <img src={logo.src} alt={logo.alt} className="h-full w-full object-contain" />
+                </div>
+                <div className="mt-4 text-xs font-black uppercase tracking-[0.22em] text-zinc-200">{logo.name}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

@@ -53,77 +53,19 @@ const projectThemes = {
 } as const;
 
 export function ProjectBrand({ project, compact = false }: ProjectCardProps) {
-  const imageHeight = compact ? "h-[3.8rem] md:h-[4.2rem]" : "h-[4.8rem] md:h-[5.5rem]";
   const panelHeight = compact ? "h-[6rem]" : "h-[7.2rem] md:h-[8rem]";
-  const basePanel = `flex ${panelHeight} items-center justify-center overflow-hidden rounded-[1.3rem] border border-white/8 px-4 py-4`;
+  const surface = {
+    dark: "bg-black/35",
+    light: "bg-[#f4f1ec]",
+    blue: "bg-[#e8edf2]",
+    stone: "bg-[#d8d0cb]",
+  }[project.logoSurface];
 
-  switch (project.id) {
-    case "tradeathem":
-      return (
-        <div className={`${basePanel} bg-black/30 px-3 py-3`}>
-          <img
-            src="/assets/projects/tradeathem-header.png"
-            alt="Trade'A'Them logo"
-            className={`${imageHeight} max-w-full object-contain`}
-          />
-        </div>
-      );
-
-    case "melksham":
-      return (
-        <div className={`${basePanel} bg-black/30 px-4 py-3`}>
-          <img
-            src="/assets/projects/melksham-logo.png"
-            alt="Melksham Mental Health logo"
-            className={`${imageHeight} w-auto max-w-full object-contain`}
-          />
-        </div>
-      );
-
-    case "business-energy":
-      return (
-        <div className={`${basePanel} justify-start bg-[#e8edf2] px-5`}>
-          <img
-            src="/assets/projects/business-energy-logo.png"
-            alt="Business Energy logo"
-            className="h-[3.5rem] w-auto max-w-full object-contain md:h-[4.1rem]"
-          />
-        </div>
-      );
-
-    case "wobbob":
-      return (
-        <div className={`${basePanel} bg-[#f2f0ee] p-0`}>
-          <img
-            src="/assets/projects/wobbob-youtube.jpg"
-            alt="WoBBoB artwork"
-            className="h-full w-full object-contain"
-          />
-        </div>
-      );
-
-    case "maid-right":
-      return (
-        <div className={`${basePanel} bg-[#d8d0cb] p-0`}>
-          <img
-            src="/assets/projects/maid-right-logo.png"
-            alt="Maid Right logo"
-            className="h-full w-full object-contain"
-          />
-        </div>
-      );
-
-    case "shhwingers":
-      return (
-        <div className={`${basePanel} bg-[#0a0808] p-0`}>
-          <img
-            src="/assets/projects/shhwingers-logo.png"
-            alt="Shhwingers logo"
-            className="h-full w-full object-contain"
-          />
-        </div>
-      );
-  }
+  return (
+    <div className={`flex ${panelHeight} items-center justify-center overflow-hidden rounded-[1.3rem] border border-white/8 ${surface} px-4 py-3`}>
+      <img src={project.logoSrc} alt={project.logoAlt} className="h-full w-full object-contain" />
+    </div>
+  );
 }
 
 export default function ProjectCard({ project, compact = false }: ProjectCardProps) {
