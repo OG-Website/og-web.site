@@ -1,4 +1,4 @@
-export const contactEmail = "hello@og-web.site";
+export const contactEmail = "og@og-web.site";
 
 export const navItems = [
   { label: "Home", href: "/" },
@@ -76,7 +76,8 @@ export type ProjectId =
   | "wobbob"
   | "business-energy"
   | "maid-right"
-  | "shhwingers";
+  | "shhwingers"
+  | "naomi";
 
 export type ProjectItem = {
   id: ProjectId;
@@ -87,7 +88,6 @@ export type ProjectItem = {
   homeFeatured: boolean;
   logoSrc: string;
   logoAlt: string;
-  logoSurface: "dark" | "light" | "blue" | "stone";
 };
 
 export const projects: ProjectItem[] = [
@@ -100,7 +100,6 @@ export const projects: ProjectItem[] = [
     homeFeatured: true,
     logoSrc: "/assets/projects/tradeathem_logo.png",
     logoAlt: "Trade'A'Them logo",
-    logoSurface: "dark",
   },
   {
     id: "melksham",
@@ -111,7 +110,6 @@ export const projects: ProjectItem[] = [
     homeFeatured: true,
     logoSrc: "/assets/projects/melksham-logo.png",
     logoAlt: "Melksham Mental Health logo",
-    logoSurface: "dark",
   },
   {
     id: "wobbob",
@@ -122,7 +120,6 @@ export const projects: ProjectItem[] = [
     homeFeatured: true,
     logoSrc: "/assets/projects/WoBBoB New Logo.png",
     logoAlt: "WoBBoB logo",
-    logoSurface: "light",
   },
   {
     id: "business-energy",
@@ -133,7 +130,16 @@ export const projects: ProjectItem[] = [
     homeFeatured: true,
     logoSrc: "/assets/projects/business-energy-logo.png",
     logoAlt: "Business Energy logo",
-    logoSurface: "blue",
+  },
+  {
+    id: "naomi",
+    name: "Naomi's Aesthetics",
+    url: "https://www.naomis-aesthetics.co.uk",
+    type: "Beauty / aesthetics website",
+    summary: "A polished client website for a beauty and aesthetics brand, built around trust, presentation and clear enquiry routes.",
+    homeFeatured: false,
+    logoSrc: "/assets/projects/naomi-logo.png",
+    logoAlt: "Naomi's Aesthetics logo",
   },
   {
     id: "maid-right",
@@ -144,7 +150,6 @@ export const projects: ProjectItem[] = [
     homeFeatured: false,
     logoSrc: "/assets/projects/maid-right-logo.png",
     logoAlt: "Maid Right logo",
-    logoSurface: "stone",
   },
   {
     id: "shhwingers",
@@ -155,95 +160,7 @@ export const projects: ProjectItem[] = [
     homeFeatured: false,
     logoSrc: "/assets/projects/shhwingers-logo.png",
     logoAlt: "Shhwingers logo",
-    logoSurface: "dark",
   },
-];
-
-export type AppItem = {
-  name: string;
-  type: string;
-  status: string;
-  summary: string;
-  logoSrc: string;
-  logoAlt: string;
-};
-
-export const appProducts: AppItem[] = [
-  {
-    name: "OG Girls",
-    type: "Windows AI companion",
-    status: "Built",
-    summary: "Public OG Girls build with desktop executable, cleaned naming, and local distribution docs.",
-    logoSrc: "/assets/projects/OG Girls logo.png",
-    logoAlt: "OG Girls logo",
-  },
-  {
-    name: "OG FileTamer",
-    type: "Windows file utility",
-    status: "Built",
-    summary: "Canonical FileTamer build for organising files with dry-run analysis, move logs, undo, and security prompts.",
-    logoSrc: "/assets/projects/og_filetamer_logo.png",
-    logoAlt: "OG FileTamer logo",
-  },
-  {
-    name: "OG Labs",
-    type: "Desktop training app",
-    status: "Built",
-    summary: "Electron desktop build for training, resources, and learning material, packaged as installer and portable app.",
-    logoSrc: "/assets/projects/og_labs_logo.png",
-    logoAlt: "OG Labs logo",
-  },
-  {
-    name: "OG-DnB",
-    type: "Desktop music app",
-    status: "Built",
-    summary: "Music production workspace with backend services, tested API contracts, and a portable Windows bundle.",
-    logoSrc: "/assets/projects/Logo.png",
-    logoAlt: "OG-DnB logo",
-  },
-  {
-    name: "OG Control Hub",
-    type: "Desktop control app",
-    status: "Built",
-    summary: "Tkinter control hub with dashboard, study plans, reminders, resources, and bundled local content.",
-    logoSrc: "/assets/projects/og_control_hub_logo.png",
-    logoAlt: "OG Control Hub logo",
-  },
-  {
-    name: "OG-USB",
-    type: "Native Windows USB tool",
-    status: "Built",
-    summary: "Windows-first USB formatter using native Storage commands, administrator checks, and safe disk selection.",
-    logoSrc: "/assets/projects/og_usb_logo.png",
-    logoAlt: "OG-USB logo",
-  },
-  {
-    name: "Social Bob",
-    type: "Social automation starter",
-    status: "Built",
-    summary: "Starter social posting assistant with local content folders, dry-run safety, and caption fallback flow.",
-    logoSrc: "/assets/projects/OG Logo.png",
-    logoAlt: "Social Bob logo",
-  },
-];
-
-export const logoDesigns = [
-  { name: "Business Energy", src: "/assets/projects/business-energy-logo.png", alt: "Business Energy logo" },
-  { name: "Desktop Icon", src: "/assets/projects/desktop.ico", alt: "Desktop icon logo" },
-  { name: "J & J's MST", src: "/assets/projects/jnj_logo.jpg", alt: "J and J's MST logo" },
-  { name: "Lilly", src: "/assets/projects/lilly_logo.jpg", alt: "Lilly logo" },
-  { name: "Maid Right", src: "/assets/projects/maid-right-logo.png", alt: "Maid Right logo" },
-  { name: "Melksham Mental Health", src: "/assets/projects/melksham-logo.png", alt: "Melksham Mental Health logo" },
-  { name: "OG-DnB", src: "/assets/projects/Logo.png", alt: "OG-DnB logo" },
-  { name: "OG Control Hub", src: "/assets/projects/og_control_hub_logo.png", alt: "OG Control Hub logo" },
-  { name: "OG FileTamer", src: "/assets/projects/og_filetamer_logo.png", alt: "OG FileTamer logo" },
-  { name: "OG Girls", src: "/assets/projects/OG Girls logo.png", alt: "OG Girls logo" },
-  { name: "OG Labs", src: "/assets/projects/og_labs_logo.png", alt: "OG Labs logo" },
-  { name: "OG Logo", src: "/assets/projects/OG Logo.png", alt: "OG logo design" },
-  { name: "OG-USB", src: "/assets/projects/og_usb_logo.png", alt: "OG-USB logo" },
-  { name: "Shhwingers", src: "/assets/projects/shhwingers-logo.png", alt: "Shhwingers logo" },
-  { name: "Trade'A'Them", src: "/assets/projects/tradeathem_logo.png", alt: "Trade'A'Them logo" },
-  { name: "WoBBoB", src: "/assets/projects/WoBBoB New Logo.png", alt: "WoBBoB logo" },
 ];
 
 export const processSteps = [

@@ -8,12 +8,14 @@ export default function ContactForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSending(true);
     setError("");
     setSent(false);
+    setStatusMessage("");
 
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -33,10 +35,19 @@ export default function ContactForm() {
       const data = await res.json();
 
       if (!res.ok || !data.ok) {
+        if (data.mailto) {
+          window.location.href = data.mailto;
+          setSent(true);
+          setStatusMessage("Email draft opened with your enquiry.");
+          form.reset();
+          return;
+        }
+
         throw new Error(data.error || `Failed to send. Email ${contactEmail} directly.`);
       }
 
       setSent(true);
+      setStatusMessage("Message sent successfully.");
       form.reset();
     } catch (err) {
       setError(err instanceof Error ? err.message : `Failed to send. Email ${contactEmail} directly.`);
@@ -85,7 +96,7 @@ export default function ContactForm() {
           {sending ? "Sending..." : "Send Enquiry"}
         </button>
 
-        {sent && <div className="text-sm font-semibold text-[#8cff41]">Message sent successfully.</div>}
+        {sent && <div className="text-sm font-semibold text-[#8cff41]">{statusMessage}</div>}
         {error && <div className="text-sm font-semibold text-red-400">{error}</div>}
       </div>
 

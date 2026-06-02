@@ -3,7 +3,7 @@ import { ChevronRight } from "lucide-react";
 
 import ProjectCard from "../components/project-card";
 import { serviceIcons } from "../components/service-icons";
-import { appProducts, processSteps, projects, services } from "../components/site-data";
+import { processSteps, projects, services } from "../components/site-data";
 
 const featuredProjects = projects.filter((project) => project.homeFeatured);
 
@@ -64,47 +64,6 @@ export default function HomePage() {
           <div className="relative z-10 grid gap-5 md:grid-cols-2">
             {featuredProjects.map((project) => (
               <ProjectCard key={project.id} project={project} compact />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-[linear-gradient(180deg,rgba(14,18,18,0.9),rgba(7,8,8,0.98))]">
-        <div className="mx-auto max-w-7xl px-4 py-14 md:px-6 md:py-18">
-          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="display-face text-sm uppercase tracking-[0.34em] text-[#8cff41]">Product apps</div>
-              <h2 className="display-face outlined-heading--soft mt-5 max-w-4xl text-[clamp(2.4rem,5vw,4.8rem)] uppercase leading-[0.9] tracking-[-0.06em]">
-                Built apps.
-                <br />
-                Ready on desktop.
-              </h2>
-            </div>
-
-            <div className="max-w-xl text-sm leading-7 text-zinc-300">
-              Every current OG product app is tracked here, with build status and the role it plays in the stack.
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {appProducts.map((app) => (
-              <div
-                key={app.name}
-                className="flex min-h-[15rem] flex-col rounded-[1.4rem] border border-white/12 bg-[linear-gradient(180deg,rgba(23,28,27,0.94),rgba(9,11,11,0.98))] p-5"
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <div className="text-xs font-black uppercase tracking-[0.22em] text-[#8cff41]">{app.status}</div>
-                  <div className="h-2.5 w-2.5 rounded-full bg-[#8cff41]" />
-                </div>
-
-                <div className="mt-5 flex h-24 items-center justify-center rounded-[1.1rem] border border-white/8 bg-white/[0.04] p-3">
-                  <img src={app.logoSrc} alt={app.logoAlt} className="h-full w-full object-contain" />
-                </div>
-
-                <div className="display-face mt-5 text-[1.55rem] uppercase leading-[0.94] text-white">{app.name}</div>
-                <div className="mt-3 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">{app.type}</div>
-                <p className="mt-4 flex-1 text-sm leading-7 text-zinc-300">{app.summary}</p>
-              </div>
             ))}
           </div>
         </div>

@@ -36,6 +36,13 @@ const projectThemes = {
       "bg-[radial-gradient(circle_at_82%_16%,rgba(74,162,255,0.1),transparent_22%),linear-gradient(180deg,rgba(25,31,38,0.96),rgba(16,21,28,0.96))]",
     kicker: "text-[#89c3ff]",
   },
+  naomi: {
+    border: "border-[#e8c77b]/22",
+    glow: "shadow-[0_0_22px_rgba(232,199,123,0.06)]",
+    surface:
+      "bg-[radial-gradient(circle_at_18%_18%,rgba(232,199,123,0.1),transparent_24%),linear-gradient(180deg,rgba(32,28,22,0.96),rgba(18,16,13,0.96))]",
+    kicker: "text-[#f0d895]",
+  },
   "maid-right": {
     border: "border-[#91f3ff]/22",
     glow: "shadow-[0_0_22px_rgba(145,243,255,0.06)]",
@@ -54,16 +61,10 @@ const projectThemes = {
 
 export function ProjectBrand({ project, compact = false }: ProjectCardProps) {
   const panelHeight = compact ? "h-[6rem]" : "h-[7.2rem] md:h-[8rem]";
-  const surface = {
-    dark: "bg-black/35",
-    light: "bg-[#f4f1ec]",
-    blue: "bg-[#e8edf2]",
-    stone: "bg-[#d8d0cb]",
-  }[project.logoSurface];
 
   return (
-    <div className={`flex ${panelHeight} items-center justify-center overflow-hidden rounded-[1.3rem] border border-white/8 ${surface} px-4 py-3`}>
-      <img src={project.logoSrc} alt={project.logoAlt} className="h-full w-full object-contain" />
+    <div className={`flex ${panelHeight} items-center justify-center overflow-hidden rounded-[1.3rem] border border-white/8 bg-black/24 px-4 py-3`}>
+      <img src={project.logoSrc} alt={project.logoAlt} className="h-full w-full object-contain drop-shadow-[0_0_18px_rgba(0,0,0,0.45)]" />
     </div>
   );
 }

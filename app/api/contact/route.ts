@@ -17,14 +17,16 @@ export async function POST(req: Request) {
     const smtpPort = Number(process.env.SMTP_PORT || 465);
     const smtpUser = process.env.SMTP_USER;
     const smtpPass = process.env.SMTP_PASS;
-    const contactEmail = process.env.CONTACT_TO || smtpUser || "hello@og-web.site";
+    const contactEmail = process.env.CONTACT_TO || smtpUser || "og@og-web.site";
+    const mailto = buildMailto(contactEmail, name, email, project, message);
 
     if (!smtpHost || !smtpUser || !smtpPass) {
       return NextResponse.json(
         {
           ok: false,
-          error: `Contact form email is not configured yet. Please email ${contactEmail} directly.`,
+          error: `Email sending is not configured yet. Opening an email to ${contactEmail}.`,
           contactEmail,
+          mailto,
         },
         { status: 503 },
       );
@@ -76,4 +78,18 @@ function escapeHtml(input: string) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+}
+
+function buildMailto(contactEmail: string, name: string, email: string, project: string, message: string) {
+  const subject = `OG Web.site enquiry from ${name}`;
+  const body = [
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Project: ${project || "Not specified"}`,
+    "",
+    "Message:",
+    message,
+  ].join("\n");
+
+  return `mailto:${encodeURIComponent(contactEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
