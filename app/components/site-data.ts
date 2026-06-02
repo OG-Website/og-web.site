@@ -229,6 +229,7 @@ export const appProducts: AppItem[] = [
 
 export const logoDesigns = [
   { name: "Business Energy", src: "/assets/projects/business-energy-logo.png", alt: "Business Energy logo" },
+  { name: "Desktop Icon", src: "/assets/projects/desktop.ico", alt: "Desktop icon logo" },
   { name: "J & J's MST", src: "/assets/projects/jnj_logo.jpg", alt: "J and J's MST logo" },
   { name: "Lilly", src: "/assets/projects/lilly_logo.jpg", alt: "Lilly logo" },
   { name: "Maid Right", src: "/assets/projects/maid-right-logo.png", alt: "Maid Right logo" },
