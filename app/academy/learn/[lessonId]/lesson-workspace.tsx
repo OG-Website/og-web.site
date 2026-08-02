@@ -5,7 +5,13 @@ import type { Lesson } from "../../course-data";
 import { createClient } from "../../../lib/supabase/client";
 import PythonPlayground from "./python-playground";
 
-export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
+export default function LessonWorkspace({
+  lesson,
+  learnerName,
+}: {
+  lesson: Lesson;
+  learnerName: string;
+}) {
   const [step, setStep] = useState(0);
   const [answer, setAnswer] = useState("");
   const [saveState, setSaveState] = useState("");
@@ -186,7 +192,9 @@ export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
         <div className="text-xs font-bold uppercase tracking-[0.22em] text-[#20d9ff]">
           Live guide
         </div>
-        <h2 className="display-face mt-3 text-xl uppercase">Ask Kora</h2>
+        <h2 className="display-face mt-3 text-xl uppercase">
+          Ask Kora, {learnerName}
+        </h2>
         <p className="mt-3 leading-7 text-zinc-400">
           Ask about the current idea in ordinary language. General teaching
           questions never require a security scope.

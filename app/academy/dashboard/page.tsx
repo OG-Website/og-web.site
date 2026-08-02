@@ -3,11 +3,13 @@ import { redirect } from "next/navigation";
 import { CheckCircle2, Clock3, Play } from "lucide-react";
 import { createClient } from "../../lib/supabase/server";
 import { allLessons, courseModules } from "../course-data";
+import AcademyBrand from "../academy-brand";
 
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  let email = "Learner";
+  let learnerName = "Learner";
+  let email = "";
   let completed = new Set<string>();
   let supabase;
   try {
@@ -17,7 +19,9 @@ export default async function DashboardPage() {
   }
   const { data } = await supabase.auth.getUser();
   if (!data.user) redirect("/academy/login");
-  email = data.user.email || email;
+  email = data.user.email || "";
+  learnerName =
+    data.user.user_metadata?.display_name || email.split("@")[0] || learnerName;
   const progress = await supabase
     .from("academy_progress")
     .select("lesson_id,status")
@@ -33,15 +37,10 @@ export default async function DashboardPage() {
     <main className="min-h-screen bg-[#070909] text-white">
       <header className="border-b border-white/10 bg-[#0b0e0d]">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
-          <Link href="/academy">
-            <img
-              src="/assets/branding/og-labs-code-central.png"
-              alt="OG Labs Code Central"
-              className="h-20 w-20 object-contain"
-            />
-          </Link>
+          <AcademyBrand />
           <div className="text-right text-sm">
-            <div className="font-bold">{email}</div>
+            <div className="font-bold">{learnerName}</div>
+            <div className="text-xs text-zinc-500">{email}</div>
             <a href="/academy/logout" className="text-[#20d9ff]">
               Sign out
             </a>
@@ -55,7 +54,7 @@ export default async function DashboardPage() {
               Your learning path
             </div>
             <h1 className="display-face mt-3 text-4xl uppercase">
-              Learn one clear step at a time
+              Welcome, {learnerName}
             </h1>
             <p className="mt-3 max-w-2xl text-lg text-zinc-400">
               Nothing is assumed. Finish each small lesson, ask questions and

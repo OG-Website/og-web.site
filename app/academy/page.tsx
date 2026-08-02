@@ -7,6 +7,7 @@ import {
   Terminal,
 } from "lucide-react";
 import { courseModules } from "./course-data";
+import AcademyBrand from "./academy-brand";
 
 export default function AcademyPage() {
   const lessonCount = courseModules.reduce(
@@ -18,13 +19,7 @@ export default function AcademyPage() {
     <div className="min-h-screen bg-[#070909] text-white">
       <header className="border-b border-white/10 bg-[#0b0e0d]">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 md:px-6">
-          <Link href="/academy" aria-label="OG Labs Code Central home">
-            <img
-              src="/assets/branding/og-labs-code-central.png"
-              alt="OG Labs Code Central"
-              className="h-20 w-20 object-contain"
-            />
-          </Link>
+          <AcademyBrand />
           <div className="flex items-center gap-3">
             <Link
               href="/academy/login"

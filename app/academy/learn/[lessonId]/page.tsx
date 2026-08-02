@@ -22,6 +22,10 @@ export default async function LessonPage({
   }
   const { data } = await supabase.auth.getUser();
   if (!data.user) redirect("/academy/login");
+  const learnerName =
+    data.user.user_metadata?.display_name ||
+    data.user.email?.split("@")[0] ||
+    "Learner";
   return (
     <main className="min-h-screen bg-[#070909] text-white">
       <header className="flex items-center justify-between gap-4 border-b border-white/10 bg-[#0b0e0d] px-4 py-4 md:px-6">
@@ -33,7 +37,7 @@ export default async function LessonPage({
           <div className="text-xs text-zinc-500">{lesson.minutes} minutes</div>
         </div>
       </header>
-      <LessonWorkspace lesson={lesson} />
+      <LessonWorkspace lesson={lesson} learnerName={learnerName} />
     </main>
   );
 }
