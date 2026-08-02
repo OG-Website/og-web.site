@@ -17,6 +17,7 @@ const bodyFace = Rajdhani({
 export const metadata: Metadata = {
   title: "OG Web.site",
   description: "Hard-edged website design, build, hosting and support for businesses that want a stronger online presence.",
+  applicationName: "OG Web.site and OG Cyber Academy",
   icons: {
     icon: "/assets/branding/logo.png",
     shortcut: "/assets/branding/logo.png",
