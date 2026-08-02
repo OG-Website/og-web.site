@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Lesson } from "../../course-data";
 import { createClient } from "../../../lib/supabase/client";
+import PythonPlayground from "./python-playground";
 
 export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
   const [step, setStep] = useState(0);
@@ -140,6 +141,7 @@ export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
               <p className="mt-3 leading-7 text-zinc-200">{current.example}</p>
             </section>
           )}
+          {current.code && <PythonPlayground starterCode={current.code} />}
           <div className="mt-8 border-l-2 border-[#8cff41] bg-[#101513] p-5">
             <div className="text-xs font-bold uppercase tracking-[0.2em] text-[#8cff41]">
               Your task

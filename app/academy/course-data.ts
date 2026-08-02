@@ -12,6 +12,7 @@ export type LessonStep = {
   explanation: string[];
   terms?: { term: string; meaning: string }[];
   example?: string;
+  code?: string;
   task: string;
 };
 
@@ -31,115 +32,107 @@ export const courseModules: CourseModule[] = [
     lessons: [
       {
         id: "what-is-a-computer",
-        title: "What a computer actually does",
-        minutes: 25,
-        summary:
-          "Learn what a computer is and follow information from input to output.",
+        title: "Write your first cybersecurity program",
+        minutes: 35,
+        summary: "Write and run a real Python security report in your browser.",
         outcome:
-          "Identify hardware and software, then explain input, processing, storage and output using an everyday example.",
+          "Run Python code, change variables and make a program flag repeated failed logins.",
         steps: [
           {
-            title: "What is a computer?",
+            title: "Run your first code",
             explanation: [
-              "A computer is an electronic machine that follows instructions. It receives information, works with that information and produces a result.",
-              "A laptop is a computer, but so are a smartphone, games console, smart television and many car systems. They look different, but they all follow instructions and work with data.",
+              "The editor below contains a complete Python program. Python is a programming language: a structured way to give a computer instructions.",
+              "Press Run Python. The program will execute inside this browser and its result will appear in the Output box. You cannot damage the computer with this exercise.",
             ],
             terms: [
               {
-                term: "Instruction",
-                meaning: "A single action that tells a computer what to do.",
+                term: "Python",
+                meaning: "A programming language designed to be readable.",
               },
               {
-                term: "Data",
-                meaning:
-                  "Information a computer can receive, store or process, such as text, numbers, pictures or sound.",
-              },
-            ],
-            example:
-              "When you use a calculator app, pressing 2 + 3 gives the computer data and an instruction. The app follows its programmed rules and displays 5.",
-            task: "Name two computers you have used today. For each one, write one job it performed for you.",
-          },
-          {
-            title: "Input, processing and output",
-            explanation: [
-              "Input is information sent into a computer. Processing is the work the computer performs. Output is the result it gives back.",
-              "This is often shortened to IPO: Input, Processing, Output. IPO is a useful way to explain what any program is doing.",
-            ],
-            terms: [
-              {
-                term: "Input",
-                meaning:
-                  "Information entering a computer, such as a key press, mouse click, voice command or camera image.",
-              },
-              {
-                term: "Processing",
-                meaning:
-                  "The computer following instructions to calculate, compare, change or move data.",
+                term: "Code",
+                meaning: "Instructions written in a programming language.",
               },
               {
                 term: "Output",
-                meaning:
-                  "The result produced, such as text on a screen, sound from a speaker or a printed page.",
+                meaning: "Information a program produces when it runs.",
               },
             ],
-            example:
-              "You type the letter H (input). The word processor identifies the key and updates the document (processing). H appears on the screen (output).",
-            task: "Explain the input, processing and output when you unlock a phone using a PIN. Write one short sentence for each stage.",
+            code: 'print("OG Labs security check")\nprint("Status: learning Python")',
+            task: "Run the program. In Practice notes, copy the two output lines exactly as they appear.",
           },
           {
-            title: "Storage keeps data for later",
+            title: "Change a string variable",
             explanation: [
-              "Output is not always saved. Storage keeps data so it can be used again after an app closes or a computer restarts.",
-              "Files can be stored on an internal drive, USB drive, memory card or an online cloud service. Saving a file copies its data to a chosen storage location.",
+              'A variable is a named place where a program keeps a value. The line username = "Hunter" stores the text Hunter under the name username.',
+              "Text inside quotation marks is called a string. print(username) reads the stored value and sends it to the Output box.",
             ],
             terms: [
               {
-                term: "Storage",
-                meaning: "A place where data is kept for later use.",
+                term: "Variable",
+                meaning: "A name that refers to a value used by a program.",
               },
               {
-                term: "File",
-                meaning:
-                  "A named collection of stored data, such as a document, photograph or program.",
+                term: "String",
+                meaning: "Text data written inside quotation marks.",
               },
             ],
-            example:
-              "A photograph shown on screen is output. When the photograph is saved to the phone and remains after a restart, it is stored data.",
-            task: "Find one file on your device. Write its name, what kind of data it contains and where you think it is stored. Do not include private information.",
+            code: 'username = "Hunter"\nprint("User being checked:")\nprint(username)',
+            task: "Run the code once. Change Hunter to your own first name, keep the quotation marks, and run it again. Record what changed in the output.",
           },
           {
-            title: "Hardware and software work together",
+            title: "Store a number",
             explanation: [
-              "Hardware means the physical parts you can touch. Examples include a keyboard, screen, processor, memory and storage drive.",
-              "Software means the instructions and programs that run on the hardware. Windows, a web browser and a game are software. Software tells the hardware which operations to perform.",
+              "Programs can store numbers without quotation marks. failed_logins = 3 stores the number 3 so the program can compare or calculate with it.",
+              "The comma in print lets us display text and a variable on the same output line.",
             ],
             terms: [
               {
-                term: "Hardware",
-                meaning: "The physical electronic parts of a computer.",
+                term: "Integer",
+                meaning: "A whole number, such as 0, 3 or 100.",
               },
               {
-                term: "Software",
+                term: "Login",
                 meaning:
-                  "Programs and instructions that tell computer hardware what to do.",
-              },
-              {
-                term: "Program",
-                meaning:
-                  "An organised set of instructions written to perform a task.",
+                  "The process of proving who you are before accessing an account.",
               },
             ],
-            example:
-              "The keyboard is hardware. A word processor is software. The software receives key presses from the keyboard and tells the screen which letters to display.",
-            task: "List three hardware items and three software items on the device you are using. Explain one way a hardware item and software program work together.",
+            code: 'username = "Hunter"\nfailed_logins = 3\nprint("User:", username)\nprint("Failed logins:", failed_logins)',
+            task: "Run the code. Change failed_logins to 1, then to 5. Record both outputs and explain which line you changed.",
           },
           {
-            title: "Check what you understand",
+            title: "Make a security decision",
             explanation: [
-              "You do not need to memorise a definition word for word. You need to recognise each part and explain it using an example.",
-              "Answer the questions below without looking back first. Then review earlier steps and correct anything you missed.",
+              "An if statement lets a program make a decision. The condition failed_logins >= 3 asks whether the value is greater than or equal to 3.",
+              "Python uses indentation to show which instruction belongs to each result. The four spaces before print are part of the code.",
             ],
-            task: "Answer all four questions: 1. What is the difference between hardware and software? 2. What does IPO stand for? 3. Is clicking a mouse input, processing or output? 4. Why is storage different from output?",
+            terms: [
+              {
+                term: "Condition",
+                meaning: "A question that has a True or False answer.",
+              },
+              {
+                term: "if",
+                meaning:
+                  "Python keyword that runs code when a condition is True.",
+              },
+              {
+                term: "else",
+                meaning:
+                  "Python keyword that runs an alternative when the condition is False.",
+              },
+            ],
+            code: 'failed_logins = 3\n\nif failed_logins >= 3:\n    print("Alert: review this account")\nelse:\n    print("No alert")',
+            task: "Run the program with 3 failed logins. Then change the value to 2 and run it again. Explain why the output changed.",
+          },
+          {
+            title: "Build the mini challenge",
+            explanation: [
+              "This small defensive program combines everything from the lesson. It stores a username, counts failed logins and displays an alert when the count reaches the chosen limit.",
+              "Run it first. Then personalise the safe sample values. Never enter a real password into a learning exercise.",
+            ],
+            code: 'username = "training-user"\nfailed_logins = 4\nalert_limit = 3\n\nprint("OG Labs login review")\nprint("User:", username)\nprint("Failed logins:", failed_logins)\n\nif failed_logins >= alert_limit:\n    print("ALERT: investigate repeated failures")\nelse:\n    print("Result: below the alert limit")',
+            task: "Change the username to a made-up name. Test failed_logins with 0, 2, 3 and 5. Record which values trigger the alert, then explain what >= means.",
           },
         ],
       },
