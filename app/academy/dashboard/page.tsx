@@ -42,7 +42,7 @@ export default async function DashboardPage() {
           </Link>
           <div className="text-right text-sm">
             <div className="font-bold">{email}</div>
-            <a href="/academy/logout" className="text-[#8cff41]">
+            <a href="/academy/logout" className="text-[#20d9ff]">
               Sign out
             </a>
           </div>
@@ -51,7 +51,7 @@ export default async function DashboardPage() {
       <div className="mx-auto max-w-7xl px-4 py-10 md:px-6">
         <div className="grid gap-8 lg:grid-cols-[1fr_22rem]">
           <section>
-            <div className="text-sm font-bold uppercase tracking-[0.25em] text-[#8cff41]">
+            <div className="text-sm font-bold uppercase tracking-[0.25em] text-[#20d9ff]">
               Your learning path
             </div>
             <h1 className="display-face mt-3 text-4xl uppercase">
@@ -73,9 +73,9 @@ export default async function DashboardPage() {
                 return (
                   <article
                     key={module.number}
-                    className="grid gap-5 border border-white/10 bg-[#0e1211] p-5 md:grid-cols-[4rem_1fr_auto] md:items-center"
+                    className="grid gap-5 border border-white/10 bg-[#09131d] p-5 md:grid-cols-[4rem_1fr_auto] md:items-center"
                   >
-                    <div className="display-face text-3xl text-[#8cff41]">
+                    <div className="display-face text-3xl text-[#20d9ff]">
                       {module.number}
                     </div>
                     <div>
@@ -92,7 +92,7 @@ export default async function DashboardPage() {
                       <Link
                         href={`/academy/learn/${nextLesson.id}`}
                         aria-label={`Continue ${module.title}`}
-                        className="inline-flex h-11 w-11 items-center justify-center bg-[#8cff41] text-black"
+                        className="inline-flex h-11 w-11 items-center justify-center bg-[#20d9ff] text-[#031018]"
                       >
                         <Play size={18} />
                       </Link>
@@ -106,20 +106,20 @@ export default async function DashboardPage() {
               })}
             </div>
           </section>
-          <aside className="h-fit border-t-2 border-[#8cff41] bg-[#101513] p-6">
+          <aside className="h-fit border-t-2 border-[#20d9ff] bg-[#0b1420] p-6">
             <div className="text-sm uppercase tracking-[0.2em] text-zinc-400">
               Course progress
             </div>
             <div className="display-face mt-3 text-5xl">{progressPercent}%</div>
             <div className="mt-4 h-2 bg-black">
               <div
-                className="h-full bg-[#8cff41]"
+                className="h-full bg-[#20d9ff]"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
             <div className="mt-6 flex items-start gap-3 text-zinc-400">
               <CheckCircle2
-                className="mt-1 shrink-0 text-[#8cff41]"
+                className="mt-1 shrink-0 text-[#20d9ff]"
                 size={18}
               />
               <p>

@@ -89,7 +89,7 @@ export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
   return (
     <div className="grid min-h-[calc(100vh-73px)] lg:grid-cols-[17rem_1fr_22rem]">
       <aside className="border-r border-white/10 bg-[#0b0e0d] p-5">
-        <div className="text-xs font-bold uppercase tracking-[0.22em] text-[#8cff41]">
+        <div className="text-xs font-bold uppercase tracking-[0.22em] text-[#20d9ff]">
           Lesson steps
         </div>
         <div className="mt-5 grid gap-2">
@@ -97,7 +97,7 @@ export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
             <button
               key={item.title}
               onClick={() => setStep(index)}
-              className={`border-l-2 px-4 py-3 text-left ${index === step ? "border-[#8cff41] bg-white/5 text-white" : "border-white/10 text-zinc-500"}`}
+              className={`border-l-2 px-4 py-3 text-left ${index === step ? "border-[#20d9ff] bg-cyan-400/5 text-white" : "border-white/10 text-zinc-500"}`}
             >
               <span className="block text-xs">STEP {index + 1}</span>
               <span className="mt-1 block font-bold">{item.title}</span>
@@ -107,7 +107,7 @@ export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
       </aside>
       <section className="p-5 md:p-10">
         <div className="mx-auto max-w-3xl">
-          <div className="text-sm font-bold uppercase tracking-[0.22em] text-[#8cff41]">
+          <div className="text-sm font-bold uppercase tracking-[0.22em] text-[#20d9ff]">
             Step {step + 1} of {steps.length}
           </div>
           <h1 className="display-face mt-4 text-3xl uppercase md:text-5xl">
@@ -120,12 +120,12 @@ export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
           </div>
           {current.terms && (
             <section className="mt-8 border-y border-white/10 py-5">
-              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#8cff41]">
+              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#20d9ff]">
                 Words to know
               </h2>
               <dl className="mt-4 grid gap-4 sm:grid-cols-2">
                 {current.terms.map(({ term, meaning }) => (
-                  <div key={term} className="bg-[#101513] p-4">
+                  <div key={term} className="bg-[#0b1420] p-4">
                     <dt className="font-bold text-white">{term}</dt>
                     <dd className="mt-1 leading-6 text-zinc-400">{meaning}</dd>
                   </div>
@@ -142,8 +142,8 @@ export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
             </section>
           )}
           {current.code && <PythonPlayground starterCode={current.code} />}
-          <div className="mt-8 border-l-2 border-[#8cff41] bg-[#101513] p-5">
-            <div className="text-xs font-bold uppercase tracking-[0.2em] text-[#8cff41]">
+          <div className="mt-8 border-l-2 border-[#20d9ff] bg-[#0b1420] p-5">
+            <div className="text-xs font-bold uppercase tracking-[0.2em] text-[#20d9ff]">
               Your task
             </div>
             <p className="mt-2 leading-7 text-zinc-300">{current.task}</p>
@@ -154,12 +154,12 @@ export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               onBlur={() => answer && save(false)}
-              className="min-h-40 resize-y border border-white/15 bg-black/30 p-4 font-mono text-sm font-normal text-white outline-none focus:border-[#8cff41]"
+              className="min-h-40 resize-y border border-white/15 bg-black/30 p-4 font-mono text-sm font-normal text-white outline-none focus:border-[#20d9ff]"
               placeholder="Write what you think here. It is fine not to know yet."
             />
           </label>
           {saveState && (
-            <p className="mt-3 text-sm text-[#8cff41]">{saveState}</p>
+            <p className="mt-3 text-sm text-[#20d9ff]">{saveState}</p>
           )}
           <div className="mt-6 flex justify-between">
             <button
@@ -175,7 +175,7 @@ export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
                   ? save(true)
                   : setStep((value) => value + 1)
               }
-              className="bg-[#8cff41] px-5 py-3 font-black text-black"
+              className="bg-[#20d9ff] px-5 py-3 font-black text-[#031018]"
             >
               {step === steps.length - 1 ? "Finish and save" : "Continue"}
             </button>
@@ -183,7 +183,7 @@ export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
         </div>
       </section>
       <aside className="border-l border-white/10 bg-[#0b0e0d] p-5">
-        <div className="text-xs font-bold uppercase tracking-[0.22em] text-[#8cff41]">
+        <div className="text-xs font-bold uppercase tracking-[0.22em] text-[#20d9ff]">
           Live guide
         </div>
         <h2 className="display-face mt-3 text-xl uppercase">Ask Kora</h2>
@@ -194,18 +194,18 @@ export default function LessonWorkspace({ lesson }: { lesson: Lesson }) {
         <textarea
           value={question}
           onChange={(event) => setQuestion(event.target.value)}
-          className="mt-5 min-h-32 w-full resize-y border border-white/15 bg-black/30 p-3 text-sm outline-none focus:border-[#8cff41]"
+          className="mt-5 min-h-32 w-full resize-y border border-white/15 bg-black/30 p-3 text-sm outline-none focus:border-[#20d9ff]"
           placeholder={`Ask Kora about ${lesson.title.toLowerCase()}...`}
         />
         <button
           onClick={askTutor}
           disabled={tutorBusy || !question.trim()}
-          className="mt-3 w-full border border-[#8cff41]/40 px-4 py-3 font-bold text-[#8cff41] disabled:opacity-40"
+          className="mt-3 w-full border border-[#20d9ff]/40 px-4 py-3 font-bold text-[#20d9ff] disabled:opacity-40"
         >
           {tutorBusy ? "Kora is thinking..." : "Ask Kora"}
         </button>
         {tutorAnswer && (
-          <div className="mt-4 whitespace-pre-wrap border-l-2 border-[#8cff41] bg-white/5 p-4 text-sm leading-6 text-zinc-200">
+          <div className="mt-4 whitespace-pre-wrap border-l-2 border-[#20d9ff] bg-cyan-400/5 p-4 text-sm leading-6 text-zinc-200">
             {tutorAnswer}
           </div>
         )}

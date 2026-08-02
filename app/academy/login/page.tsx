@@ -13,9 +13,9 @@ export default function LoginPage() {
             className="mx-auto h-36 w-36 object-contain"
           />
         </Link>
-        <section className="mt-8 border border-white/12 bg-[#101413] p-6 md:p-8">
-          <div className="text-sm font-bold uppercase tracking-[0.25em] text-[#8cff41]">
-            OG Cyber Academy
+        <section className="mt-8 border border-white/12 bg-[#0b1420] p-6 md:p-8">
+          <div className="text-sm font-bold uppercase tracking-[0.25em] text-[#20d9ff]">
+            OG Labs Code Central
           </div>
           <h1 className="display-face mt-3 text-3xl uppercase">
             Learner portal

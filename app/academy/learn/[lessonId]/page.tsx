@@ -25,7 +25,7 @@ export default async function LessonPage({
   return (
     <main className="min-h-screen bg-[#070909] text-white">
       <header className="flex items-center justify-between gap-4 border-b border-white/10 bg-[#0b0e0d] px-4 py-4 md:px-6">
-        <Link href="/academy/dashboard" className="font-bold text-[#8cff41]">
+        <Link href="/academy/dashboard" className="font-bold text-[#20d9ff]">
           &lt;- Dashboard
         </Link>
         <div className="min-w-0 text-right">

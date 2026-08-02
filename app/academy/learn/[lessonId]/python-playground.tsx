@@ -77,10 +77,10 @@ export default function PythonPlayground({
   }
 
   return (
-    <section className="mt-8 border border-[#8cff41]/35 bg-[#080b0a]">
+    <section className="mt-8 border border-[#20d9ff]/35 bg-[#071019]">
       <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
         <div>
-          <div className="text-xs font-bold uppercase tracking-[0.2em] text-[#8cff41]">
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-[#20d9ff]">
             Python editor
           </div>
           <div className="mt-1 text-xs text-zinc-500">
@@ -111,7 +111,7 @@ export default function PythonPlayground({
           type="button"
           onClick={run}
           disabled={running}
-          className="inline-flex min-h-14 items-center justify-center gap-2 bg-[#8cff41] px-6 font-black text-black disabled:opacity-60"
+          className="inline-flex min-h-14 items-center justify-center gap-2 bg-[#20d9ff] px-6 font-black text-[#031018] disabled:opacity-60"
         >
           <Play size={17} fill="currentColor" />{" "}
           {running ? "Running..." : "Run Python"}
