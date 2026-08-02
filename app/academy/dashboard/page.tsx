@@ -9,19 +9,20 @@ export const dynamic = "force-dynamic";
 export default async function DashboardPage() {
   let email = "Learner";
   let completed = new Set<string>();
+  let supabase;
   try {
-    const supabase = await createClient();
-    const { data } = await supabase.auth.getUser();
-    if (!data.user) redirect("/academy/login");
-    email = data.user.email || email;
-    const progress = await supabase
-      .from("academy_progress")
-      .select("lesson_id,status")
-      .eq("status", "completed");
-    completed = new Set((progress.data || []).map((row) => row.lesson_id));
+    supabase = await createClient();
   } catch {
     redirect("/academy/login?reason=setup");
   }
+  const { data } = await supabase.auth.getUser();
+  if (!data.user) redirect("/academy/login");
+  email = data.user.email || email;
+  const progress = await supabase
+    .from("academy_progress")
+    .select("lesson_id,status")
+    .eq("status", "completed");
+  completed = new Set((progress.data || []).map((row) => row.lesson_id));
   const nextLesson =
     allLessons.find((lesson) => !completed.has(lesson.id)) ||
     allLessons[allLessons.length - 1];
