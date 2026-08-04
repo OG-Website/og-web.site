@@ -2,7 +2,6 @@
 
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { createClient } from "../../lib/supabase/client";
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
@@ -19,19 +18,14 @@ export default function LoginForm() {
     setBusy(true);
     setMessage("");
     try {
-      const supabase = createClient();
-      const result =
-        mode === "signup"
-          ? await supabase.auth.signUp({
-              email,
-              password,
-              options: {
-                emailRedirectTo: `${window.location.origin}/academy/dashboard`,
-              },
-            })
-          : await supabase.auth.signInWithPassword({ email, password });
-      if (result.error) throw result.error;
-      if (mode === "signup" && !result.data.session)
+      const response = await fetch("/api/academy/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mode, email, password }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Authentication failed.");
+      if (result.needsEmailConfirmation)
         setMessage(
           "Check your email to confirm your account, then return to learner login.",
         );
