@@ -47,7 +47,9 @@ export default async function DashboardPage() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
           <AcademyBrand />
           <div className="text-right text-sm">
-            <div className="font-bold">{learnerName}</div>
+            <div className="font-bold">
+              Welcome, {learnerName.split(" ")[0]}
+            </div>
             <div className="text-xs text-zinc-500">{email}</div>
             <a href="/academy/logout" className="text-[#20d9ff]">
               Sign out
