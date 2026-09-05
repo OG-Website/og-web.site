@@ -4,6 +4,7 @@ import { CheckCircle2, Clock3, Play } from "lucide-react";
 import { createClient } from "../../lib/supabase/server";
 import { allLessons, courseModules } from "../course-data";
 import AcademyBrand from "../academy-brand";
+import AcademyComms from "./academy-comms";
 
 export const dynamic = "force-dynamic";
 
@@ -27,6 +28,13 @@ export default async function DashboardPage() {
     .select("lesson_id,status")
     .eq("status", "completed");
   completed = new Set((progress.data || []).map((row) => row.lesson_id));
+  const profile = await supabase
+    .from("academy_profiles")
+    .select("display_name,role")
+    .eq("id", data.user.id)
+    .single();
+  if (profile.data?.display_name) learnerName = profile.data.display_name;
+  const role = profile.data?.role === "owner" ? "owner" : "learner";
   const nextLesson =
     allLessons.find((lesson) => !completed.has(lesson.id)) ||
     allLessons[allLessons.length - 1];
@@ -60,6 +68,18 @@ export default async function DashboardPage() {
               Nothing is assumed. Finish each small lesson, ask questions and
               practise before moving on.
             </p>
+            <div className="mt-6 border-l-4 border-[#20d9ff] bg-[#0b1420] px-5 py-4">
+              <div className="font-bold text-white">
+                Welcome, {learnerName.split(" ")[0]}!
+              </div>
+              <p className="mt-2 max-w-3xl leading-7 text-zinc-300">
+                This is OG Labs, your place to learn coding and cyber security
+                one clear step at a time. I&apos;m OG, and I built this space to
+                help you experiment, ask questions and grow your skills. Use the
+                chat button whenever you need me. There are no silly questions
+                here.
+              </p>
+            </div>
             <div className="mt-8 grid gap-4">
               {courseModules.map((module) => {
                 const moduleDone = module.lessons.filter((lesson) =>
@@ -105,28 +125,33 @@ export default async function DashboardPage() {
               })}
             </div>
           </section>
-          <aside className="h-fit border-t-2 border-[#20d9ff] bg-[#0b1420] p-6">
-            <div className="text-sm uppercase tracking-[0.2em] text-zinc-400">
-              Course progress
-            </div>
-            <div className="display-face mt-3 text-5xl">{progressPercent}%</div>
-            <div className="mt-4 h-2 bg-black">
-              <div
-                className="h-full bg-[#20d9ff]"
-                style={{ width: `${progressPercent}%` }}
-              />
-            </div>
-            <div className="mt-6 flex items-start gap-3 text-zinc-400">
-              <CheckCircle2
-                className="mt-1 shrink-0 text-[#20d9ff]"
-                size={18}
-              />
-              <p>
-                {completed.size} of {allLessons.length} lessons complete. Notes
-                and results are stored against your learner account.
-              </p>
-            </div>
-          </aside>
+          <div className="space-y-5">
+            <aside className="h-fit border-t-2 border-[#20d9ff] bg-[#0b1420] p-6">
+              <div className="text-sm uppercase tracking-[0.2em] text-zinc-400">
+                Course progress
+              </div>
+              <div className="display-face mt-3 text-5xl">
+                {progressPercent}%
+              </div>
+              <div className="mt-4 h-2 bg-black">
+                <div
+                  className="h-full bg-[#20d9ff]"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+              <div className="mt-6 flex items-start gap-3 text-zinc-400">
+                <CheckCircle2
+                  className="mt-1 shrink-0 text-[#20d9ff]"
+                  size={18}
+                />
+                <p>
+                  {completed.size} of {allLessons.length} lessons complete.
+                  Notes and results are stored against your learner account.
+                </p>
+              </div>
+            </aside>
+            <AcademyComms userId={data.user.id} role={role} />
+          </div>
         </div>
       </div>
     </main>

@@ -8,12 +8,17 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const mode: AuthMode = body.mode === "signup" ? "signup" : "login";
-    const email = String(body.email || "").trim().toLowerCase();
+    const email = String(body.email || "")
+      .trim()
+      .toLowerCase();
     const password = String(body.password || "");
 
     if (!email || password.length < 8) {
       return NextResponse.json(
-        { error: "Enter a valid email address and a password of at least 8 characters." },
+        {
+          error:
+            "Enter a valid email address and a password of at least 8 characters.",
+        },
         { status: 400 },
       );
     }
@@ -34,7 +39,10 @@ export async function POST(request: Request) {
         : await supabase.auth.signInWithPassword({ email, password });
 
     if (result.error) {
-      return NextResponse.json({ error: result.error.message }, { status: 400 });
+      return NextResponse.json(
+        { error: result.error.message },
+        { status: 400 },
+      );
     }
 
     const user = result.data.user;
@@ -45,13 +53,29 @@ export async function POST(request: Request) {
       );
     }
 
+    const forwardedFor = request.headers.get("x-forwarded-for");
+    const ipAddress =
+      forwardedFor?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip") ||
+      null;
+    const { error: eventError } = await supabase
+      .from("academy_auth_events")
+      .insert({
+        user_id: user.id,
+        event_type: mode === "signup" ? "registration" : "login",
+        ip_address: ipAddress,
+        user_agent: request.headers.get("user-agent"),
+      });
+    if (eventError)
+      console.error("Academy auth event could not be recorded", eventError);
+
     let notificationSent = true;
     try {
       await sendAcademyAuthNotification({
         event: mode === "signup" ? "registration" : "login",
         email: user.email,
         userId: user.id,
-        ipAddress: getClientIp(request),
+        ipAddress: ipAddress || "Not supplied",
         userAgent: request.headers.get("user-agent") || "Not supplied",
         occurredAt: new Date(),
       });
@@ -72,13 +96,4 @@ export async function POST(request: Request) {
       { status: 500 },
     );
   }
-}
-
-function getClientIp(request: Request) {
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  return (
-    forwardedFor?.split(",")[0]?.trim() ||
-    request.headers.get("x-real-ip") ||
-    "Not supplied"
-  );
 }
