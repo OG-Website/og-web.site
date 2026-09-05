@@ -1,6 +1,13 @@
 "use client";
 
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  FormEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { MessageCircle, Send, X } from "lucide-react";
 import { createClient } from "../../lib/supabase/client";
 
@@ -39,6 +46,8 @@ export default function AcademyComms({
   const [body, setBody] = useState("");
   const [error, setError] = useState("");
   const [open, setOpen] = useState(role === "learner");
+  const [notice, setNotice] = useState("");
+  const previousPeerOnline = useRef(false);
 
   const refresh = useCallback(async () => {
     const [profilesResult, messagesResult, eventsResult] = await Promise.all([
@@ -113,6 +122,16 @@ export default function AcademyComms({
     Date.now() - new Date(peer.last_seen_at).getTime() < 90000,
   );
 
+  useEffect(() => {
+    if (role === "owner" && peerOnline && !previousPeerOnline.current && peer) {
+      setNotice(`${peer.display_name} is online now.`);
+      const timer = window.setTimeout(() => setNotice(""), 8000);
+      previousPeerOnline.current = peerOnline;
+      return () => window.clearTimeout(timer);
+    }
+    previousPeerOnline.current = peerOnline;
+  }, [peer, peerOnline, role]);
+
   async function sendMessage(event: FormEvent) {
     event.preventDefault();
     const message = body.trim();
@@ -131,6 +150,18 @@ export default function AcademyComms({
 
   return (
     <>
+      {notice && (
+        <button
+          type="button"
+          onClick={() => {
+            setOpen(true);
+            setNotice("");
+          }}
+          className="fixed right-5 top-5 z-[60] border-l-4 border-emerald-400 bg-[#0b1420] px-5 py-4 text-left font-bold text-white shadow-2xl"
+        >
+          {notice} Open chat
+        </button>
+      )}
       <button
         type="button"
         onClick={() => setOpen(true)}
